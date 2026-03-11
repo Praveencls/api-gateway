@@ -1,1 +1,4 @@
-com\company\apigateway\ApiGatewayApplication.class
+com\praveen\apigateway\ApiGatewayApplication.class
+com\praveen\apigateway\config\SecurityConfig.class
+com\praveen\apigateway\filter\JwtAuthenticationFilter.class
+com\praveen\apigateway\security\JwtUtil.class

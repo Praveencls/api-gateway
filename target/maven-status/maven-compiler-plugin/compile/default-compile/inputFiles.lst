@@ -1,1 +1,4 @@
 D:\projects\api-gateway\src\main\java\com\apigateway\ApiGatewayApplication.java
+D:\projects\api-gateway\src\main\java\com\apigateway\config\SecurityConfig.java
+D:\projects\api-gateway\src\main\java\com\apigateway\filter\JwtAuthenticationFilter.java
+D:\projects\api-gateway\src\main\java\com\apigateway\security\JwtUtil.java

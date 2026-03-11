@@ -1,11 +1,23 @@
+server:
+  port: 8080
+
 spring:
+  application:
+    name: api-gateway
+
   cloud:
     gateway:
       routes:
-        - id: user-service
-          uri: http://localhost:8081
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/api/v1/users/**   # Gateway path
+            - Path=/auth/**
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/v1/users/**
+
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -17,3 +29,11 @@ spring:
               - PUT
               - DELETE
             allowedHeaders: "*"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+jwt:
+  secret: mysecretkeymysecretkeymysecretkey123456
