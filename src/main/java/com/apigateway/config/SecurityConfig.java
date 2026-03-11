@@ -16,18 +16,22 @@ public class SecurityConfig {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
 
         return http
-                .csrf(ServerHttpSecurity.CsrfSpec::disable)
-                .authorizeExchange(exchange -> exchange
-                        // public endpoints
-                        .pathMatchers(
+            .csrf(ServerHttpSecurity.CsrfSpec::disable)
+
+            // Disable browser popup
+            .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
+
+            // Disable form login
+            .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
+
+            .authorizeExchange(exchange -> exchange
+                    .pathMatchers(
                             "/auth/**",
-                            "/v3/api-docs/**",
-                            "/swagger-ui.html",
-                            "/swagger-ui/**"
-                        ).permitAll()
-                        // all other endpoints require authentication
-                        .anyExchange().authenticated()
-                )
-                .build();
+                            "/swagger-ui/**",
+                            "/v3/api-docs/**"
+                    ).permitAll()
+                    .anyExchange().authenticated()
+            )
+            .build();
     }
 }
